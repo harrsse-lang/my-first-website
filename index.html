@@ -2,19 +2,12 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>나의 첫 웹사이트</title>
+  <title>미카는 미카/title>
   <style>
-    /* [디자인 영역] 엘리베이터가 훅 떨어지지 않고 부드럽게 내려가도록 하는 마법입니다 */
     html { scroll-behavior: smooth; }
-    
-    /* 각 구역이 화면(vh)을 꽉 채우게 넉넉하게 만듭니다 */
     section { height: 100vh; padding: 50px; }
-    
-    /* 구역별 배경색을 다르게 칠해줍니다 */
     #home { background-color: #f0f8ff; } /* 연한 파란색 */
     #vr { background-color: #e6e6fa; }   /* 연한 보라색 */
-
-    /* 네비게이션 안의 링크(a 태그) 디자인을 참고 사이트와 똑같이 변경합니다 */
 nav a {
   font-size: 14px;                 /* 글자 크기를 14px로 줄입니다 */
   color: #020617;                  /* 글자 색상을 어두운 색으로 바꿉니다 */
@@ -22,7 +15,6 @@ nav a {
   font-family: 'Inter', sans-serif; /* 폰트를 Inter로 변경합니다 */
   text-decoration: none;           /* 링크 특유의 밑줄을 없앱니다 */
 }  
-    /* 네비게이션 안의 요소들을 나란히 배치합니다 */
 nav {
   display: flex;          /* 자식 요소들을 가로로 한 줄에 배치합니다 */
   align-items: center;    /* 이미지와 글자의 위아래 높이를 중앙으로 딱 맞춥니다 */
@@ -53,7 +45,7 @@ nav {
   /* 7. whitespace-nowrap (글자가 길어져도 줄바꿈 하지 않음) */
   white-space: nowrap; 
   
-  /* [개발자 Best Practice] 버튼에 마우스를 올리면 손가락 모양으로 바뀌게 합니다 */
+  /*버튼에 마우스를 올리면 손가락 모양으로 바뀌게 합니다 */
   cursor: pointer; 
 }
   </style>
@@ -62,13 +54,11 @@ nav {
   <!-- [뼈대 영역] 클릭할 수 있는 네비게이션 메뉴입니다 -->
 <nav>
     <a href="#home">
-      <!-- 글자 대신 img 태그를 넣습니다 -->
-      <!-- src 에는 아까 올린 이미지 파일의 정확한 이름을 적어주세요 -->
       <img src="homebutton.png" alt="홈으로 이동" width="50">
     <a href="#vr">미카는 미카</a>
 <nav>
-    <button class="top-btn">신스멀게동</button>
-  </nav>
+    <button class="top-btn">컨텐츠 UP❤️</button>
+</nav>
 
   <!-- 첫 번째 구역 (홈) -->
   <section id="home">

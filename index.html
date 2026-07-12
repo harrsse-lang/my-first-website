@@ -11,7 +11,7 @@
     a { text-decoration: none; }
     
     /* ---------------------------------------------------
-       1. 메인 네비게이션 바
+       1. 메인 네비게이션 바 (상단 고정)
     --------------------------------------------------- */
     .main-nav {
       display: flex; justify-content: space-between; align-items: center;
@@ -22,22 +22,19 @@
     .nav-left { display: flex; align-items: center; gap: 15px; font-weight: 900; color: #0f172a; }
     .nav-right { display: flex; gap: 10px; }
 
-    /* 상단 버튼 기본 디자인 */
     .top-btn {
       background-color: #FFFFFF; color: #334155; font-size: 14px; font-weight: 700;
       padding: 8px 16px; border: 1px solid #cbd5e1; border-radius: 16px; cursor: pointer;
       transition: all 0.2s;
     }
     
-    /* ★ 선택된 버튼(활성화) 디자인 (초록색) */
+    /* 선택된 버튼(활성화) 디자인 (초록색) */
     .top-btn.active {
-      background-color: #059669; /* 진한 초록색 */
-      color: #ffffff;
-      border-color: #059669;
+      background-color: #059669; color: #ffffff; border-color: #059669;
     }
 
     /* ---------------------------------------------------
-       2. 서브 네비게이션 바 (멤버, 일정 등)
+       2. 서브 네비게이션 바
     --------------------------------------------------- */
     .sub-nav {
       display: flex; gap: 20px; padding: 15px 30px;
@@ -47,56 +44,85 @@
       background: none; border: none; font-size: 14px; font-weight: 600;
       color: #64748b; cursor: pointer; padding: 5px 0;
     }
-    .sub-btn.active { color: #059669; border-bottom: 2px solid #059669; } /* 선택된 서브메뉴 */
+    .sub-btn.active { color: #059669; border-bottom: 2px solid #059669; }
 
     /* ---------------------------------------------------
-       3. 메인 콘텐츠 구역 (배너 + 멤버 리스트)
+       3. 메인 콘텐츠 (배너 영역)
     --------------------------------------------------- */
     .container { max-width: 1200px; margin: 0 auto; padding: 30px; }
 
-    /* 동아리 설명 배너 영역 */
     .hero-section {
       display: flex; background-color: #ffffff; border-radius: 24px;
       overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 40px;
     }
+    /* 메인 배너 이미지 영역 (506*380 느낌 유지) */
     .hero-img { width: 50%; background-color: #1e293b; }
     .hero-img img { width: 100%; height: 100%; object-fit: cover; }
-    .hero-text { width: 50%; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
     
+    .hero-text { width: 50%; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
     .badge { display: inline-block; background-color: #d1fae5; color: #047857; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; width: fit-content; margin-bottom: 10px; }
     .hero-text h1 { margin: 0 0 5px 0; font-size: 28px; color: #0f172a; }
     .hero-text h3 { margin: 0 0 20px 0; font-size: 14px; color: #059669; font-weight: normal; }
     .hero-text p { color: #475569; font-size: 15px; line-height: 1.6; }
 
-    /* 멤버 타이틀 영역 (멤버 글자와 13명 숫자가 있는 곳) */
-    .section-header {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
-    }
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
     .section-header h2 { margin: 0; font-size: 20px; color: #0f172a; }
     .member-count-box { font-size: 14px; color: #6366f1; font-weight: bold; }
 
     /* ---------------------------------------------------
-       4. 멤버 리스트 (CSS Grid 활용 - 5칸씩 자동 배치)
+       ★ 4. 리스트 (와이어프레임 & 400*400 비율 적용)
     --------------------------------------------------- */
     .members-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr); /* 한 줄에 5명씩 배치 */
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr); /* 큼직하게 3칸으로 나눔 */
+      gap: 30px; /* 카드 사이 간격 */
     }
 
     .member-card {
-      background-color: #ffffff; border-radius: 16px; padding: 20px;
-      display: flex; flex-direction: column; align-items: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.2s;
+      background-color: #ffffff; 
+      border-radius: 16px; 
+      padding: 20px;
+      display: flex; 
+      flex-direction: column; 
+      align-items: center;    
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+      transition: transform 0.2s;
+      height: 100%; /* 카드 높이 균일하게 맞춤 */
     }
-    .member-card:hover { transform: translateY(-5px); } /* 마우스 올리면 살짝 떠오름 */
+    .member-card:hover { transform: translateY(-5px); }
     
-    .member-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; background-color: #f1f5f9; }
-    .member-card h4 { margin: 0 0 15px 0; font-size: 16px; color: #0f172a; }
-    .member-btn {
-      background-color: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0;
-      padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer;
+    /* 제안해주신 400*400 (1:1 비율) 마법 코드 */
+    .member-card img { 
+      width: 100%; /* 너비는 그리드에 꽉 차게 */
+      aspect-ratio: 1 / 1; /* ★ 가로세로 비율을 1:1 정사각형으로 강제 고정! */
+      border-radius: 12px; 
+      object-fit: cover; 
+      margin-bottom: 20px; 
+      background-color: #f1f5f9; 
     }
+
+    .member-card h4 { 
+      margin: 0 0 15px 0; 
+      font-size: 18px; 
+      color: #0f172a; 
+      text-align: center;
+    }
+
+    /* 링크 보기 버튼 */
+    .member-btn {
+      background-color: #f0fdf4; 
+      color: #16a34a; 
+      border: 1px solid #bbf7d0;
+      padding: 10px 24px; 
+      border-radius: 20px; 
+      font-size: 14px; 
+      font-weight: bold; 
+      text-decoration: none; 
+      display: inline-block; /* a 태그를 예쁜 버튼 모양으로 만듦 */
+      margin-top: auto; /* ★ 글자 길이가 달라도 버튼을 카드 맨 밑으로 밀어냄 */
+      transition: background-color 0.2s;
+    }
+    .member-btn:hover { background-color: #dcfce7; }
   </style>
 </head>
 <body>
@@ -107,7 +133,6 @@
       <span>🧚 미카는 미카</span>
     </div>
     <div class="nav-right">
-      <!-- 'active' 클래스가 붙으면 초록색으로 보입니다 -->
       <button class="top-btn active" onclick="activateMenu(this)">SOOP</button>
       <button class="top-btn" onclick="activateMenu(this)">유튜브</button>
       <button class="top-btn" onclick="activateMenu(this)">우미단</button>
@@ -116,10 +141,10 @@
 
   <!-- 2. 서브 메뉴바 -->
   <div class="sub-nav">
-    <button class="sub-btn active">⚠️공지</button>
-    <button class="sub-btn">❤️UP</button>
-    <button class="sub-btn">💬미카 이야기</button>
-    <button class="sub-btn">👀미카, 이거 봤어?</button>
+    <button class="sub-btn active">💬공지</button>
+    <button class="sub-btn">❤️추천 게시판</button>
+    <button class="sub-btn">👀미카, 이거봤어?</button>
+    <button class="sub-btn">📷사진첩</button>
   </div>
 
   <!-- 3. 메인 콘텐츠 -->
@@ -128,80 +153,64 @@
     <!-- 동아리 설명 배너 -->
     <section class="hero-section">
       <div class="hero-img">
-        <!-- 스팀 이미지 주소를 이곳에 넣으시면 됩니다 -->
         <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="게임배너">
       </div>
       <div class="hero-text">
         <span class="badge">SOOP 버츄얼</span>
         <h1>미카는 미카</h1>
         <h3>CONTACT: dearmika34@naver.com</h3>
-        <p>안녕하세요 와튜버로 데뷔한 미카입니다! 데뷔일 26년 3월 6일</p>
+        <p>안녕하세요~ 와튜버로 데뷔한 미카입니다. 데뷔일은 26년 3월 6일입니다!</p>
       </div>
     </section>
 
     <!-- 리스트 영역 -->
     <section class="members-section">
       <div class="section-header">
-        <h2>리스트</h2>
-        <!-- ★ 이 숫자가 자바스크립트에 의해 자동으로 바뀝니다! -->
-        <div class="member-count-box"><span id="dynamic-count">0</span>명</div>
+        <h2>게시판</h2>
+        <!-- 자바스크립트로 자동 계산되는 숫자 -->
+        <div class="member-count-box"><span id="dynamic-count">0</span>개</div>
       </div>
       
-      <!-- 멤버 카드들을 담는 큰 상자 -->
+      <!-- 카드들을 담는 3단 그리드 -->
       <div class="members-grid" id="member-list">
         
-        <!-- 멤버 1 -->
+        <!-- 카드 1 -->
         <article class="member-card">
-          <img src="notice.png" alt="방송 공지">
+          <!-- 깃허브에 올리신 이미지 이름을 넣어주세요 -->
+          <img src="notice.png" alt="방송 공지 이미지">
           <h4>방송 공지</h4>
           <a href="https://www.sooplive.com/station/mika35/board/122664957" target="_blank" class="member-btn">공지 보기</a>
         </article>
 
-        <!-- 멤버 2 -->
+        <!-- 카드 2 -->
         <article class="member-card">
           <img src="up.png" alt="UP 게시판">
           <h4>UP 게시판</h4>
-          <a href="https://www.sooplive.com/station/mika35/board/123417053" target="_blank" class="member-btn">UP 해주기</a>
+          <a href="https://www.sooplive.com/station/mika35/board/123417053" target="_blank" class="member-btn">UP 누르기</a>
         </article>
         
-        <!-- 멤버 3 -->
+        <!-- 카드 3 -->
         <article class="member-card">
           <img src="mikasay.png" alt="미카 게시판">
-          <h4>미카 게시판</h4></h4>
-          <a href="https://www.sooplive.com/station/mika35/board/122859561" target="_blank" class="member-btn">구경 하기</a>
+          <h4>미카 게시판</h4>
+          <a href="https://www.sooplive.com/station/mika35/board/122859561" target="_blank" class="member-btn">구경하기</a>
         </article>
-
-        <!-- 
-          새로운 멤버를 추가하고 싶다면 
-          여기서부터 <article> ~ </article> 까지를 복사해서 밑에 계속 붙여넣기만 하세요! 
-          JS가 알아서 숫자를 세어줍니다. 
-        -->
         
       </div>
     </section>
   </div>
 
-  <!-- ★ 4. 마법의 자바스크립트 공간 -->
+  <!-- 자바스크립트 영역 -->
   <script>
-    // 1. 멤버 숫자를 자동으로 세어주는 기능
     function updateMemberCount() {
-      // HTML 문서 안에서 'member-card'라는 이름표를 가진 녀석들을 모두 찾아서 모아옵니다.
       const cards = document.querySelectorAll('.member-card');
-      
-      // 모아온 카드의 개수(length)를 센 다음, 'dynamic-count'라는 곳에 글자로 적어줍니다.
       document.getElementById('dynamic-count').innerText = cards.length;
     }
-
-    // 웹페이지가 처음 켜지면 바로 숫자를 세도록 명령합니다.
     updateMemberCount();
 
-    // 2. 상단 버튼 클릭 시 초록색으로 활성화되는 기능
     function activateMenu(clickedButton) {
-      // 먼저 모든 상단 버튼에서 'active(초록색)' 디자인을 뺏어옵니다.
       const buttons = document.querySelectorAll('.top-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
-      
-      // 방금 내가 클릭한 그 버튼에만 'active' 디자인을 줍니다.
       clickedButton.classList.add('active');
     }
   </script>

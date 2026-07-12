@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>나의 첫 웹사이트</title>
+  <style>
+    /* [디자인 영역] 엘리베이터가 훅 떨어지지 않고 부드럽게 내려가도록 하는 마법입니다 */
+    html { scroll-behavior: smooth; }
+    
+    /* 각 구역이 화면(vh)을 꽉 채우게 넉넉하게 만듭니다 */
+    section { height: 100vh; padding: 50px; }
+    
+    /* 구역별 배경색을 다르게 칠해줍니다 */
+    #home { background-color: #f0f8ff; } /* 연한 파란색 */
+    #vr { background-color: #e6e6fa; }   /* 연한 보라색 */
+  </style>
+</head>
+<body>
+  <!-- [뼈대 영역] 클릭할 수 있는 네비게이션 메뉴입니다 -->
+  <nav>
+    <a href="#home">홈으로</a> | 
+    <a href="#vr">VR 섹션으로 이동 (여기 클릭!)</a>
+  </nav>
+
+  <!-- 첫 번째 구역 (홈) -->
+  <section id="home">
+    <h1>여기는 첫 화면입니다.</h1>
+    <p>위의 'VR 섹션으로 이동' 글자를 클릭해 보세요.</p>
+  </section>
+
+  <!-- 두 번째 구역 (VR) -->
+  <section id="vr">
+    <h1>여기가 바로 VR 섹션입니다!</h1>
+    <p>주소창을 보시면 끝에 #vr이 붙어있는 것을 확인할 수 있습니다.</p>
+    <p>참고하신 사이트와 똑같은 원리로 작동하는 거랍니다.</p>
+  </section>
+</body>
+</html>

@@ -2,118 +2,215 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>미카는 미카</title>
+  <title>우왁굳의 동아리 - 신스멀게동</title>
   <style>
-    /* 웹페이지의 기본 여백을 없애서 네비게이션 바가 화면 끝에 딱 붙게 만듭니다 */
-    body { 
-      margin: 0; 
-      padding: 0; 
-    }
-
-    /* 부드러운 스크롤과 섹션 디자인 */
-    html { scroll-behavior: smooth; }
-    section { height: 100vh; padding: 50px; }
-    #home { background-color: #f0f8ff; } 
-    #vr { background-color: #e6e6fa; }   
-
     /* ---------------------------------------------------
-       1. 네비게이션 바 (상단 고정 및 양쪽 정렬)
+       [기본 설정] 
     --------------------------------------------------- */
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between; /* 왼쪽, 오른쪽 그룹을 양 끝으로 밀어냅니다 */
-      padding: 15px 30px; 
-      
-      background-color: rgba(255, 255, 255, 0.95); /* 반투명 흰색 */
-      border-bottom: 1px solid #ecfdf5; 
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
-      
-      position: sticky; /* 스크롤해도 상단에 고정 */
-      top: 0;           
-      z-index: 50;      
-    }
-
+    body { margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Inter', 'Noto Sans KR', sans-serif; }
+    a { text-decoration: none; }
+    
     /* ---------------------------------------------------
-       2. 네비게이션 왼쪽 그룹 (로고, 제목)
+       1. 메인 네비게이션 바
     --------------------------------------------------- */
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 15px; /* 로고와 글자 사이 간격 */
+    .main-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 30px; background-color: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid #ecfdf5; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      position: sticky; top: 0; z-index: 50;
     }
+    .nav-left { display: flex; align-items: center; gap: 15px; font-weight: 900; color: #0f172a; }
+    .nav-right { display: flex; gap: 10px; }
 
-    .nav-left a {
-      font-size: 16px;                 
-      color: #020617;                  
-      font-weight: 900;                
-      font-family: 'Inter', sans-serif; 
-      text-decoration: none;           
-    }  
-
-    /* ---------------------------------------------------
-       3. 네비게이션 오른쪽 그룹 (버튼들 묶음)
-    --------------------------------------------------- */
-    .nav-right {
-      display: flex;
-      gap: 10px; /* 버튼과 버튼 사이의 간격을 10px로 띄워줍니다 */
-    }
-
-    /* 상단 버튼 공통 디자인 */
+    /* 상단 버튼 기본 디자인 */
     .top-btn {
-      background-color: #FFFFFF; 
-      color: #334155; 
-      font-size: 14px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 900; 
-      padding: 8px 16px; 
-      border: 1px solid #cbd5e1; 
-      border-radius: 16px; 
-      white-space: nowrap; 
-      text-decoration: none; /* 링크 밑줄 제거 */
-      cursor: pointer; 
-      transition: all 0.2s; /* 마우스 올릴 때 부드럽게 변하는 효과 준비 */
+      background-color: #FFFFFF; color: #334155; font-size: 14px; font-weight: 700;
+      padding: 8px 16px; border: 1px solid #cbd5e1; border-radius: 16px; cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    /* ★ 선택된 버튼(활성화) 디자인 (초록색) */
+    .top-btn.active {
+      background-color: #059669; /* 진한 초록색 */
+      color: #ffffff;
+      border-color: #059669;
     }
 
-    /* [개발자 보너스] 버튼에 마우스를 올렸을 때 살짝 어두워지는 효과 */
-    .top-btn:hover {
-      background-color: #f8fafc;
-      border-color: #94a3b8;
+    /* ---------------------------------------------------
+       2. 서브 네비게이션 바 (멤버, 일정 등)
+    --------------------------------------------------- */
+    .sub-nav {
+      display: flex; gap: 20px; padding: 15px 30px;
+      background-color: #ffffff; border-bottom: 1px solid #e2e8f0;
+    }
+    .sub-btn {
+      background: none; border: none; font-size: 14px; font-weight: 600;
+      color: #64748b; cursor: pointer; padding: 5px 0;
+    }
+    .sub-btn.active { color: #059669; border-bottom: 2px solid #059669; } /* 선택된 서브메뉴 */
+
+    /* ---------------------------------------------------
+       3. 메인 콘텐츠 구역 (배너 + 멤버 리스트)
+    --------------------------------------------------- */
+    .container { max-width: 1200px; margin: 0 auto; padding: 30px; }
+
+    /* 동아리 설명 배너 영역 */
+    .hero-section {
+      display: flex; background-color: #ffffff; border-radius: 24px;
+      overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 40px;
+    }
+    .hero-img { width: 50%; background-color: #1e293b; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-text { width: 50%; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+    
+    .badge { display: inline-block; background-color: #d1fae5; color: #047857; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; width: fit-content; margin-bottom: 10px; }
+    .hero-text h1 { margin: 0 0 5px 0; font-size: 28px; color: #0f172a; }
+    .hero-text h3 { margin: 0 0 20px 0; font-size: 14px; color: #059669; font-weight: normal; }
+    .hero-text p { color: #475569; font-size: 15px; line-height: 1.6; }
+
+    /* 멤버 타이틀 영역 (멤버 글자와 13명 숫자가 있는 곳) */
+    .section-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
+    }
+    .section-header h2 { margin: 0; font-size: 20px; color: #0f172a; }
+    .member-count-box { font-size: 14px; color: #6366f1; font-weight: bold; }
+
+    /* ---------------------------------------------------
+       4. 멤버 리스트 (CSS Grid 활용 - 5칸씩 자동 배치)
+    --------------------------------------------------- */
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* 한 줄에 5명씩 배치 */
+      gap: 20px;
+    }
+
+    .member-card {
+      background-color: #ffffff; border-radius: 16px; padding: 20px;
+      display: flex; flex-direction: column; align-items: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.2s;
+    }
+    .member-card:hover { transform: translateY(-5px); } /* 마우스 올리면 살짝 떠오름 */
+    
+    .member-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; background-color: #f1f5f9; }
+    .member-card h4 { margin: 0 0 15px 0; font-size: 16px; color: #0f172a; }
+    .member-btn {
+      background-color: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0;
+      padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <!-- 네비게이션 영역 -->
-  <nav>
-    <!-- [왼쪽] 로고와 제목 -->
+  <!-- 1. 메인 상단 네비게이션 -->
+  <nav class="main-nav">
     <div class="nav-left">
-      <a href="#home">
-        <!-- src에 실제 이미지 이름을 넣어주세요 -->
-        <img src="homebutton.png" alt="홈으로 이동" width="40"> 
-      </a>
-      <a href="#vr">미카는 미카</a>
+      <span>🏠 우왁굳의 동아리</span>
     </div>
-    
-    <!-- [오른쪽] URL 이동 버튼들 -->
     <div class="nav-right">
-      <!-- href="이동할주소" 부분을 원하시는 진짜 사이트 주소로 바꿔주세요! -->
-      <a href="https://google.com" target="_blank" class="top-btn">신스멀게동</a>
-      <a href="https://naver.com" target="_blank" class="top-btn">브품동</a>
-      <a href="https://youtube.com" target="_blank" class="top-btn">컨텐츠 UP❤️</a>
+      <!-- 'active' 클래스가 붙으면 초록색으로 보입니다 -->
+      <button class="top-btn active" onclick="activateMenu(this)">신스멀게동</button>
+      <button class="top-btn" onclick="activateMenu(this)">브품동</button>
+      <button class="top-btn" onclick="activateMenu(this)">하맵동</button>
     </div>
   </nav>
 
-  <!-- 메인 콘텐츠 구역 -->
-  <section id="home">
-    <h1>여기는 첫 화면입니다.</h1>
-    <p>아래로 스크롤을 내려도 상단 메뉴바가 예쁘게 따라올 것입니다.</p>
-  </section>
+  <!-- 2. 서브 메뉴바 -->
+  <div class="sub-nav">
+    <button class="sub-btn active">멤버</button>
+    <button class="sub-btn">일정</button>
+    <button class="sub-btn">게임 입찰</button>
+    <button class="sub-btn">갤슬랭</button>
+  </div>
 
-  <section id="vr">
-    <h1>여기가 바로 VR 섹션입니다!</h1>
-    <p>오른쪽 상단의 예쁜 버튼들을 클릭하면 새 창에서 사이트가 열립니다.</p>
-  </section>
+  <!-- 3. 메인 콘텐츠 -->
+  <div class="container">
+    
+    <!-- 동아리 설명 배너 -->
+    <section class="hero-section">
+      <div class="hero-img">
+        <!-- 스팀 이미지 주소를 이곳에 넣으시면 됩니다 -->
+        <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="게임배너">
+      </div>
+      <div class="hero-text">
+        <span class="badge">신스멀게동</span>
+        <h1>신스멀게동</h1>
+        <h3>신작스팀멀티게임 동아리</h3>
+        <p>우왁굳과 멤버들이 새로 나온 스팀 멀티게임을 함께 고르고 플레이하는 동아리입니다.</p>
+      </div>
+    </section>
 
+    <!-- 멤버 리스트 영역 -->
+    <section class="members-section">
+      <div class="section-header">
+        <h2>멤버</h2>
+        <!-- ★ 이 숫자가 자바스크립트에 의해 자동으로 바뀝니다! -->
+        <div class="member-count-box"><span id="dynamic-count">0</span>명</div>
+      </div>
+      
+      <!-- 멤버 카드들을 담는 큰 상자 -->
+      <div class="members-grid" id="member-list">
+        
+        <!-- 멤버 1 -->
+        <article class="member-card">
+          <img src="profile1.png" alt="우왁굳">
+          <h4>우왁굳</h4>
+          <button class="member-btn">방송국 가기</button>
+        </article>
+
+        <!-- 멤버 2 -->
+        <article class="member-card">
+          <img src="profile2.png" alt="마이곰이">
+          <h4>마이곰이</h4>
+          <button class="member-btn">방송국 가기</button>
+        </article>
+        
+        <!-- 멤버 3 -->
+        <article class="member-card">
+          <img src="profile3.png" alt="유키라">
+          <h4>유키라</h4>
+          <button class="member-btn">방송국 가기</button>
+        </article>
+
+        <!-- 임시로 1명을 더 추가해보겠습니다 -->
+        <article class="member-card">
+          <img src="profile4.png" alt="천양">
+          <h4>천양</h4>
+          <button class="member-btn">방송국 가기</button>
+        </article>
+
+        <!-- 
+          새로운 멤버를 추가하고 싶다면 
+          여기서부터 <article> ~ </article> 까지를 복사해서 밑에 계속 붙여넣기만 하세요! 
+          JS가 알아서 숫자를 세어줍니다. 
+        -->
+        
+      </div>
+    </section>
+  </div>
+
+  <!-- ★ 4. 마법의 자바스크립트 공간 -->
+  <script>
+    // 1. 멤버 숫자를 자동으로 세어주는 기능
+    function updateMemberCount() {
+      // HTML 문서 안에서 'member-card'라는 이름표를 가진 녀석들을 모두 찾아서 모아옵니다.
+      const cards = document.querySelectorAll('.member-card');
+      
+      // 모아온 카드의 개수(length)를 센 다음, 'dynamic-count'라는 곳에 글자로 적어줍니다.
+      document.getElementById('dynamic-count').innerText = cards.length;
+    }
+
+    // 웹페이지가 처음 켜지면 바로 숫자를 세도록 명령합니다.
+    updateMemberCount();
+
+    // 2. 상단 버튼 클릭 시 초록색으로 활성화되는 기능
+    function activateMenu(clickedButton) {
+      // 먼저 모든 상단 버튼에서 'active(초록색)' 디자인을 뺏어옵니다.
+      const buttons = document.querySelectorAll('.top-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      // 방금 내가 클릭한 그 버튼에만 'active' 디자인을 줍니다.
+      clickedButton.classList.add('active');
+    }
+  </script>
 </body>
 </html>

@@ -1,29 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <!-- 1. 타이틀 닫는 태그(<) 수정 완료 -->
   <title>미카는 미카</title>
   <style>
+    /* 웹페이지의 기본 여백을 없애서 네비게이션 바가 화면 끝에 딱 붙게 만듭니다 */
+    body { 
+      margin: 0; 
+      padding: 0; 
+    }
+
+    /* 부드러운 스크롤과 섹션 디자인 */
     html { scroll-behavior: smooth; }
     section { height: 100vh; padding: 50px; }
     #home { background-color: #f0f8ff; } 
     #vr { background-color: #e6e6fa; }   
-    
-    nav a {
-      font-size: 14px;                 
+
+    /* ---------------------------------------------------
+       1. 네비게이션 바 (상단 고정 및 양쪽 정렬)
+    --------------------------------------------------- */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* 왼쪽, 오른쪽 그룹을 양 끝으로 밀어냅니다 */
+      padding: 15px 30px; 
+      
+      background-color: rgba(255, 255, 255, 0.95); /* 반투명 흰색 */
+      border-bottom: 1px solid #ecfdf5; 
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
+      
+      position: sticky; /* 스크롤해도 상단에 고정 */
+      top: 0;           
+      z-index: 50;      
+    }
+
+    /* ---------------------------------------------------
+       2. 네비게이션 왼쪽 그룹 (로고, 제목)
+    --------------------------------------------------- */
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 15px; /* 로고와 글자 사이 간격 */
+    }
+
+    .nav-left a {
+      font-size: 16px;                 
       color: #020617;                  
       font-weight: 900;                
       font-family: 'Inter', sans-serif; 
       text-decoration: none;           
     }  
-    
-    nav {
-      display: flex;          
-      align-items: center;    
-      gap: 15px; /* (참고) 글자와 간격을 위해 15px로 띄워두었습니다 */
+
+    /* ---------------------------------------------------
+       3. 네비게이션 오른쪽 그룹 (버튼들 묶음)
+    --------------------------------------------------- */
+    .nav-right {
+      display: flex;
+      gap: 10px; /* 버튼과 버튼 사이의 간격을 10px로 띄워줍니다 */
     }
-    
+
+    /* 상단 버튼 공통 디자인 */
     .top-btn {
       background-color: #FFFFFF; 
       color: #334155; 
@@ -34,32 +70,50 @@
       border: 1px solid #cbd5e1; 
       border-radius: 16px; 
       white-space: nowrap; 
+      text-decoration: none; /* 링크 밑줄 제거 */
       cursor: pointer; 
+      transition: all 0.2s; /* 마우스 올릴 때 부드럽게 변하는 효과 준비 */
+    }
+
+    /* [개발자 보너스] 버튼에 마우스를 올렸을 때 살짝 어두워지는 효과 */
+    .top-btn:hover {
+      background-color: #f8fafc;
+      border-color: #94a3b8;
     }
   </style>
 </head>
 <body>
-  <!-- 3. 네비게이션 영역을 올바르게 묶음 -->
-  <nav>
-    <a href="#home">
-      <img src="homebutton.png" alt="홈으로 이동" width="50">
-    </a> <!-- 2. 이미지 링크 닫는 태그(</a>) 추가 완료 -->
-    
-    <a href="#vr">미카는 미카</a>
-    <button class="top-btn">컨텐츠 UP❤️</button>
-  </nav> <!-- 닫는 태그 빗금(/) 정상 적용 완료 -->
 
-  <!-- 첫 번째 구역 (홈) -->
+  <!-- 네비게이션 영역 -->
+  <nav>
+    <!-- [왼쪽] 로고와 제목 -->
+    <div class="nav-left">
+      <a href="#home">
+        <!-- src에 실제 이미지 이름을 넣어주세요 -->
+        <img src="homebutton.png" alt="홈으로 이동" width="40"> 
+      </a>
+      <a href="#vr">미카는 미카</a>
+    </div>
+    
+    <!-- [오른쪽] URL 이동 버튼들 -->
+    <div class="nav-right">
+      <!-- href="이동할주소" 부분을 원하시는 진짜 사이트 주소로 바꿔주세요! -->
+      <a href="https://google.com" target="_blank" class="top-btn">신스멀게동</a>
+      <a href="https://naver.com" target="_blank" class="top-btn">브품동</a>
+      <a href="https://youtube.com" target="_blank" class="top-btn">컨텐츠 UP❤️</a>
+    </div>
+  </nav>
+
+  <!-- 메인 콘텐츠 구역 -->
   <section id="home">
     <h1>여기는 첫 화면입니다.</h1>
-    <p>위의 'VR 섹션으로 이동' 글자를 클릭해 보세요.</p>
+    <p>아래로 스크롤을 내려도 상단 메뉴바가 예쁘게 따라올 것입니다.</p>
   </section>
 
-  <!-- 두 번째 구역 (VR) -->
   <section id="vr">
     <h1>여기가 바로 VR 섹션입니다!</h1>
-    <p>주소창을 보시면 끝에 #vr이 붙어있는 것을 확인할 수 있습니다.</p>
-    <p>참고하신 사이트와 똑같은 원리로 작동하는 거랍니다.</p>
+    <p>오른쪽 상단의 예쁜 버튼들을 클릭하면 새 창에서 사이트가 열립니다.</p>
   </section>
+
 </body>
 </html>

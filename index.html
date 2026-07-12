@@ -21,8 +21,14 @@ nav a {
   font-weight: 900;                /* 글자를 가장 두껍게(black) 만듭니다 */
   font-family: 'Inter', sans-serif; /* 폰트를 Inter로 변경합니다 */
   text-decoration: none;           /* 링크 특유의 밑줄을 없앱니다 */
-  display: block;                  /* 참고 사이트처럼 영역 전체를 차지하게 만듭니다 */
-}  </style>
+}  
+    /* 네비게이션 안의 요소들을 나란히 배치합니다 */
+nav {
+  display: flex;          /* 자식 요소들을 가로로 한 줄에 배치합니다 */
+  align-items: center;    /* 이미지와 글자의 위아래 높이를 중앙으로 딱 맞춥니다 */
+  gap: 15px;              /* 집 모양 이미지와 글자 사이의 간격을 15px 띄워줍니다 */
+}
+  </style>
 </head>
 <body>
   <!-- [뼈대 영역] 클릭할 수 있는 네비게이션 메뉴입니다 -->
